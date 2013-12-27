@@ -1,0 +1,4 @@
+C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.Common\bin\Debug\AthleticsSocialWeb.Common.dll
+C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.Common\bin\Debug\AthleticsSocialWeb.Common.pdb
+C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.Common\obj\Debug\AthleticsSocialWeb.Common.dll
+C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.Common\obj\Debug\AthleticsSocialWeb.Common.pdb

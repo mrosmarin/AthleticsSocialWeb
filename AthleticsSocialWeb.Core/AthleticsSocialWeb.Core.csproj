@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{196F8EA3-D8E5-4608-8DB4-5C5DA2F347B9}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AthleticsSocialWeb.Core</RootNamespace>
+    <AssemblyName>AthleticsSocialWeb.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.0.2\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.0.2\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.1.0.0\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.1.0.0\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Class1.cs" />
+    <Compile Include="Entities\Account.cs" />
+    <Compile Include="Entities\AccountFile.cs" />
+    <Compile Include="Entities\AccountFolder.cs" />
+    <Compile Include="Entities\AccountPermission.cs" />
+    <Compile Include="Entities\Alert.cs" />
+    <Compile Include="Entities\Blog.cs" />
+    <Compile Include="Entities\BoardCategory.cs" />
+    <Compile Include="Entities\BoardForum.cs" />
+    <Compile Include="Entities\BoardPost.cs" />
+    <Compile Include="Entities\Comment.cs" />
+    <Compile Include="Entities\ContentFilter.cs" />
+    <Compile Include="Entities\MessageWithRecipient.cs" />
+    <Compile Include="Entities\VisibilityLevel.cs" />
+    <Compile Include="Entities\File.cs" />
+    <Compile Include="Entities\FileSystemFolder.cs" />
+    <Compile Include="Entities\Folder.cs" />
+    <Compile Include="Entities\FolderFile.cs" />
+    <Compile Include="Entities\FolderType.cs" />
+    <Compile Include="Entities\Friend.cs" />
+    <Compile Include="Entities\FriendInvitation.cs" />
+    <Compile Include="Entities\FriendshipDefinition.cs" />
+    <Compile Include="Entities\FriendshipDefinitionType.cs" />
+    <Compile Include="Entities\Gag.cs" />
+    <Compile Include="Entities\Group.cs" />
+    <Compile Include="Entities\GroupForum.cs" />
+    <Compile Include="Entities\GroupMember.cs" />
+    <Compile Include="Entities\GroupToGroupType.cs" />
+    <Compile Include="Entities\GroupType.cs" />
+    <Compile Include="Entities\LevelOfExperienceType.cs" />
+    <Compile Include="Entities\MailQueueHistory.cs" />
+    <Compile Include="Entities\MailQueueReceiving.cs" />
+    <Compile Include="Entities\MailQueueWorking.cs" />
+    <Compile Include="Entities\Message.cs" />
+    <Compile Include="Entities\MessageFolder.cs" />
+    <Compile Include="Entities\MessageRecipient.cs" />
+    <Compile Include="Entities\MessageRecipientType.cs" />
+    <Compile Include="Entities\MessageStatusType.cs" />
+    <Compile Include="Entities\Moderation.cs" />
+    <Compile Include="Entities\Permission.cs" />
+    <Compile Include="Entities\PrivacyFlag.cs" />
+    <Compile Include="Entities\PrivacyFlagType.cs" />
+    <Compile Include="Entities\Profile.cs" />
+    <Compile Include="Entities\ProfileAttribute.cs" />
+    <Compile Include="Entities\ProfileAttributeType.cs" />
+    <Compile Include="Entities\Rating.cs" />
+    <Compile Include="Entities\StatusUpdate.cs" />
+    <Compile Include="Entities\SystemObject.cs" />
+    <Compile Include="Entities\SystemObjectRatingOption.cs" />
+    <Compile Include="Entities\SystemObjectTag.cs" />
+    <Compile Include="Entities\Tag.cs" />
+    <Compile Include="Entities\Term.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Entities\Base\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,14 @@
+C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.Core\bin\Debug\AthleticsSocialWeb.Core.dll.config
+C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.Core\bin\Debug\AthleticsSocialWeb.Core.dll
+C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.Core\bin\Debug\AthleticsSocialWeb.Core.pdb
+C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.Core\bin\Debug\EntityFramework.dll
+C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.Core\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.Core\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.Core\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.Core\bin\Debug\EntityFramework.xml
+C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.Core\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.Core\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.Core\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.Core\obj\Debug\AthleticsSocialWeb.Core.dll
+C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.Core\obj\Debug\AthleticsSocialWeb.Core.pdb
+C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.Core\obj\Debug\AthleticsSocialWeb.Core.csprojResolveAssemblyReference.cache

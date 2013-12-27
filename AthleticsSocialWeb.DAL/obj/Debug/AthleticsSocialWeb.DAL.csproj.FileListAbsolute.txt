@@ -1,0 +1,5 @@
+C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.DAL\bin\Debug\AthleticsSocialWeb.DAL.dll
+C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.DAL\bin\Debug\AthleticsSocialWeb.DAL.pdb
+C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.DAL\obj\Debug\AthleticsSocialWeb.DAL.dll
+C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.DAL\obj\Debug\AthleticsSocialWeb.DAL.pdb
+C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.DAL\obj\Debug\AthleticsSocialWeb.DAL.csprojResolveAssemblyReference.cache
