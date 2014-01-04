@@ -11,4 +11,3 @@ C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\Athle
 C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.Core\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
 C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.Core\obj\Debug\AthleticsSocialWeb.Core.dll
 C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.Core\obj\Debug\AthleticsSocialWeb.Core.pdb
-C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.Core\obj\Debug\AthleticsSocialWeb.Core.csprojResolveAssemblyReference.cache

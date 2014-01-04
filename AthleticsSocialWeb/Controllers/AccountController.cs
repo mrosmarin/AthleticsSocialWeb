@@ -6,6 +6,7 @@ using System.Security.Cryptography;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
+using AthleticsSocialWeb.Common;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
@@ -23,6 +24,8 @@ namespace AthleticsSocialWeb.Controllers
     {
         private const string LocalLoginProvider = "Local";
 
+        private ILogger Logger { set; get; }
+
         //public AccountController()
         //{
         //        UserManager = Startup.UserManagerFactory();
@@ -30,10 +33,11 @@ namespace AthleticsSocialWeb.Controllers
         //}
 
         public AccountController(UserManager<Startup.ApplicationUser> userManager,
-            ISecureDataFormat<AuthenticationTicket> accessTokenFormat)
+            ISecureDataFormat<AuthenticationTicket> accessTokenFormat, ILogger logger)
         {
             UserManager = userManager;
             AccessTokenFormat = accessTokenFormat;
+            Logger = logger;
         }
 
         public UserManager<Startup.ApplicationUser> UserManager { get; private set; }

@@ -1,0 +1,12 @@
+C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.Common.Nlog\obj\Debug\AthleticsSocialWeb.Common.Nlog.csprojResolveAssemblyReference.cache
+C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.Common.Nlog\bin\Debug\NLog.config
+C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.Common.Nlog\bin\Debug\AthleticsSocialWeb.Common.Nlog.dll
+C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.Common.Nlog\bin\Debug\AthleticsSocialWeb.Common.Nlog.pdb
+C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.Common.Nlog\bin\Debug\AthleticsSocialWeb.Common.dll
+C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.Common.Nlog\bin\Debug\NLog.dll
+C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.Common.Nlog\bin\Debug\NLog.Extended.dll
+C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.Common.Nlog\bin\Debug\AthleticsSocialWeb.Common.pdb
+C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.Common.Nlog\bin\Debug\NLog.xml
+C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.Common.Nlog\bin\Debug\NLog.Extended.xml
+C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.Common.Nlog\obj\Debug\AthleticsSocialWeb.Common.Nlog.dll
+C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.Common.Nlog\obj\Debug\AthleticsSocialWeb.Common.Nlog.pdb

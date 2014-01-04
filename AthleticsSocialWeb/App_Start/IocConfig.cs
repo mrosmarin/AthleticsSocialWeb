@@ -1,19 +1,114 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq.Expressions;
+using System.Reflection;
 using System.Web.Http;
 using System.Web.Http.Dependencies;
+using System.Web.Mvc;
+using AthleticsSocialWeb.Common;
+using AthleticsSocialWeb.Common.Log4Net;
+using AthleticsSocialWeb.Common.Nlog;
+using SimpleInjector;
 using SimpleInjector.Advanced;
+using SimpleInjector.Integration.Web.Mvc;
 
-[assembly: WebActivator.PostApplicationStartMethod(typeof(AthleticsSocialWeb.App_Start.IocConfig), "Initialize")]
 
-namespace AthleticsSocialWeb.App_Start
+[assembly: WebActivator.PostApplicationStartMethod(typeof(AthleticsSocialWeb.IocConfig), "Initialize")]
+
+namespace AthleticsSocialWeb
 {
-    using System.Reflection;
-    using System.Web.Mvc;
+    public static class ContextDependentExtensions
+    {
+        public static void RegisterWithContext<TService>(
+            this Container container,
+            Func<IocConfig.DependencyContext, TService> contextBasedFactory)
+            where TService : class
+        {
+            if (contextBasedFactory == null)
+            {
+                throw new ArgumentNullException("contextBasedFactory");
+            }
 
-    using SimpleInjector;
-    using SimpleInjector.Integration.Web.Mvc;
+            Func<TService> imp = () => contextBasedFactory(IocConfig.DependencyContext.Root);
+            Func<TService> rootFactory = imp;
+
+            container.Register(rootFactory, Lifestyle.Transient);
+
+            // Allow the Func<DependencyContext, TService> to be 
+            // injected into parent types.
+            container.ExpressionBuilding += (sender, e) =>
+            {
+                if (e.RegisteredServiceType == typeof (TService)) return;
+                var rewriter = new DependencyContextRewriter
+                {
+                    ServiceType = e.RegisteredServiceType,
+                    ContextBasedFactory = contextBasedFactory,
+                    RootFactory = rootFactory,
+                    Expression = e.Expression
+                };
+
+                e.Expression = rewriter.Visit(e.Expression);
+            };
+        }
+
+        private sealed class DependencyContextRewriter : ExpressionVisitor
+        {
+            internal Type ServiceType { get; set; }
+
+            internal object ContextBasedFactory { get; set; }
+
+            internal object RootFactory { get; set; }
+
+            internal Expression Expression { get; set; }
+
+            private Type ImplementationType
+            {
+                get
+                {
+                    var expression = Expression as NewExpression;
+
+                    if (expression != null)
+                    {
+                        return expression.Constructor.DeclaringType;
+                    }
+
+                    return ServiceType;
+                }
+            }
+
+            protected override Expression VisitInvocation(
+                InvocationExpression node)
+            {
+                if (!IsRootedContextBasedFactory(node))
+                {
+                    return base.VisitInvocation(node);
+                }
+
+                return Expression.Invoke(
+                    Expression.Constant(ContextBasedFactory),
+                    Expression.Constant(
+                        new IocConfig.DependencyContext(
+                            ServiceType,
+                            ImplementationType)));
+            }
+
+            private bool IsRootedContextBasedFactory(
+                InvocationExpression node)
+            {
+                var expression =
+                    node.Expression as ConstantExpression;
+
+                if (expression == null)
+                {
+                    return false;
+                }
+
+                return ReferenceEquals(expression.Value,
+                    RootFactory);
+            }
+        }
+    }
 
     public static class IocConfig
     {
@@ -22,7 +117,7 @@ namespace AthleticsSocialWeb.App_Start
         {
             // Did you know the container can diagnose your configuration? Go to: http://bit.ly/YE8OJj.
             var container = new Container();
-           // container.Options.ConstructorResolutionBehavior = new MvcConstructorBehavior(container.Options.ConstructorResolutionBehavior);
+            // container.Options.ConstructorResolutionBehavior = new MvcConstructorBehavior(container.Options.ConstructorResolutionBehavior);
 
             // register Web API controllers (important! http://bit.ly/1aMbBW0)
             var services = GlobalConfiguration.Configuration.Services;
@@ -37,7 +132,7 @@ namespace AthleticsSocialWeb.App_Start
 
             container.RegisterMvcAttributeFilterProvider();
 
-            container.Verify();
+           // container.Verify();
 
             DependencyResolver.SetResolver(new SimpleInjectorDependencyResolver(container));
             GlobalConfiguration.Configuration.DependencyResolver = new SimpleInjectorWebApiDependencyResolver(container);
@@ -52,6 +147,23 @@ namespace AthleticsSocialWeb.App_Start
             container.Register(() => Startup.UserManagerFactory());
             container.Register(() => Startup.OAuthOptions.AccessTokenFormat);
             container.Register(() => GlobalConfiguration.Configuration);
+
+
+           // container.RegisterSingle<ILoggerFactory, NLogLoggerFactory>();
+
+           //container.RegisterWithContext(context => 
+           //     container.GetInstance<ILoggerFactory>().Create(context.ImplementationType));
+
+           // container.Register<ILogger>(() => new NLogLogger(container.GetType()));
+            container.RegisterWithContext<ILogger>(context =>
+                new CompositeLogger(LoggerTypeEnum.Log4Net,
+                    new List<Tuple<LoggerTypeEnum, ILogger>>
+                    {
+                        new Tuple<LoggerTypeEnum, ILogger>(LoggerTypeEnum.Nlog,
+                            new NLogLogger(context.ImplementationType)),
+                        new Tuple<LoggerTypeEnum, ILogger>(LoggerTypeEnum.Log4Net,
+                            new Log4NetLogger(context.ImplementationType))
+                    }));
         }
 
         public sealed class SimpleInjectorWebApiDependencyResolver
@@ -117,5 +229,30 @@ namespace AthleticsSocialWeb.App_Start
                 return DefaultBehavior.GetConstructor(serviceType, impType);
             }
         }
+
+
+        [DebuggerDisplay("DependencyContext (ServiceType: {ServiceType},  ImplementationType: {ImplementationType})")]
+        public class DependencyContext
+        {
+            internal static readonly DependencyContext Root =
+                new DependencyContext();
+
+            internal DependencyContext(Type serviceType,
+                Type implementationType)
+            {
+                ServiceType = serviceType;
+                ImplementationType = implementationType;
+            }
+
+            private DependencyContext()
+            {
+            }
+
+            public Type ServiceType { get; private set; }
+
+            public Type ImplementationType { get; private set; }
+        }
+
+       
     }
 }
