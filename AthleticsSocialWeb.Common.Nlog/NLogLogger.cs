@@ -1,4 +1,5 @@
 ﻿using System;
+using AthleticsSocialWeb.Common.Logging;
 using NLog;
 using NLog.Config;
 

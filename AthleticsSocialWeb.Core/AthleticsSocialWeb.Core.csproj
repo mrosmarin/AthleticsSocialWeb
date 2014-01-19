@@ -45,6 +45,8 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -52,7 +54,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="Entities\Account.cs" />
     <Compile Include="Entities\AccountFile.cs" />
     <Compile Include="Entities\AccountFolder.cs" />
@@ -64,6 +65,72 @@
     <Compile Include="Entities\BoardPost.cs" />
     <Compile Include="Entities\Comment.cs" />
     <Compile Include="Entities\ContentFilter.cs" />
+    <Compile Include="Entities\Logging\aspnet_Applications.cs">
+      <DependentUpon>HealthModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Logging\aspnet_SchemaVersions.cs">
+      <DependentUpon>HealthModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Logging\aspnet_Users.cs">
+      <DependentUpon>HealthModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Logging\aspnet_WebEvent_ErrorCodes.cs">
+      <DependentUpon>HealthModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Logging\aspnet_WebEvent_Events.cs">
+      <DependentUpon>HealthModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Logging\ILogReportingFacade.cs" />
+    <Compile Include="Entities\Logging\ILogReportingRepository.cs" />
+    <Compile Include="Entities\Logging\LogEvent.cs" />
+    <Compile Include="Entities\Logging\ELMAH_Error.cs">
+      <DependentUpon>LoggingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Logging\HealthModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HealthModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Logging\HealthModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HealthModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Logging\HealthModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HealthModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Logging\Log4Net_Error.cs">
+      <DependentUpon>LoggingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Logging\LoggingModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LoggingModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Logging\LoggingModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LoggingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Logging\LoggingModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LoggingModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Logging\NLog_Error.cs">
+      <DependentUpon>LoggingModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Logging\vw_aspnet_Applications.cs">
+      <DependentUpon>HealthModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Logging\vw_aspnet_Users.cs">
+      <DependentUpon>HealthModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Logging\vw_aspnet_WebEvents_extended.cs">
+      <DependentUpon>HealthModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entities\MessageWithRecipient.cs" />
     <Compile Include="Entities\VisibilityLevel.cs" />
     <Compile Include="Entities\File.cs" />
@@ -111,7 +178,50 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <EntityDeploy Include="Entities\Logging\LoggingModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>LoggingModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <EntityDeploy Include="Entities\Logging\HealthModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>HealthModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Entities\Logging\HealthModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>HealthModel.edmx</DependentUpon>
+      <LastGenOutput>HealthModel.Context.cs</LastGenOutput>
+    </None>
+    <None Include="Entities\Logging\HealthModel.edmx.diagram">
+      <DependentUpon>HealthModel.edmx</DependentUpon>
+    </None>
+    <None Include="Entities\Logging\HealthModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>HealthModel.edmx</DependentUpon>
+      <LastGenOutput>HealthModel.cs</LastGenOutput>
+    </None>
+    <None Include="Entities\Logging\LoggingModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>LoggingModel.edmx</DependentUpon>
+      <LastGenOutput>LoggingModel.Context.cs</LastGenOutput>
+    </None>
+    <None Include="Entities\Logging\LoggingModel.edmx.diagram">
+      <DependentUpon>LoggingModel.edmx</DependentUpon>
+    </None>
+    <None Include="Entities\Logging\LoggingModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>LoggingModel.edmx</DependentUpon>
+      <LastGenOutput>LoggingModel.cs</LastGenOutput>
+    </None>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AthleticsSocialWeb.Common\AthleticsSocialWeb.Common.csproj">
+      <Project>{A0592821-EFDE-44DE-8BA5-85621E1B9CD1}</Project>
+      <Name>AthleticsSocialWeb.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

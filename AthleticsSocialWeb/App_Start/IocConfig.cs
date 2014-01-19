@@ -8,6 +8,7 @@ using System.Web.Http.Dependencies;
 using System.Web.Mvc;
 using AthleticsSocialWeb.Common;
 using AthleticsSocialWeb.Common.Log4Net;
+using AthleticsSocialWeb.Common.Logging;
 using AthleticsSocialWeb.Common.Nlog;
 using SimpleInjector;
 using SimpleInjector.Advanced;
@@ -110,7 +111,7 @@ namespace AthleticsSocialWeb
         }
     }
 
-    public static class IocConfig
+    public static partial class IocConfig
     {
         /// <summary>Initialize the container and register it as MVC & Webapi Dependency Resolver.</summary>
         public static void Initialize()
@@ -138,33 +139,7 @@ namespace AthleticsSocialWeb
             GlobalConfiguration.Configuration.DependencyResolver = new SimpleInjectorWebApiDependencyResolver(container);
         }
 
-        private static void InitializeContainer(Container container)
-        {
-            // For instance:
-            // container.Register<IUserRepository, SqlUserRepository>();
-
-            //Startup.UserManagerFactory(), Startup.OAuthOptions.AccessTokenFormat
-            container.Register(() => Startup.UserManagerFactory());
-            container.Register(() => Startup.OAuthOptions.AccessTokenFormat);
-            container.Register(() => GlobalConfiguration.Configuration);
-
-
-           // container.RegisterSingle<ILoggerFactory, NLogLoggerFactory>();
-
-           //container.RegisterWithContext(context => 
-           //     container.GetInstance<ILoggerFactory>().Create(context.ImplementationType));
-
-           // container.Register<ILogger>(() => new NLogLogger(container.GetType()));
-            container.RegisterWithContext<ILogger>(context =>
-                new CompositeLogger(LoggerTypeEnum.Log4Net,
-                    new List<Tuple<LoggerTypeEnum, ILogger>>
-                    {
-                        new Tuple<LoggerTypeEnum, ILogger>(LoggerTypeEnum.Nlog,
-                            new NLogLogger(context.ImplementationType)),
-                        new Tuple<LoggerTypeEnum, ILogger>(LoggerTypeEnum.Log4Net,
-                            new Log4NetLogger(context.ImplementationType))
-                    }));
-        }
+      
 
         public sealed class SimpleInjectorWebApiDependencyResolver
             : System.Web.Http.Dependencies.IDependencyResolver

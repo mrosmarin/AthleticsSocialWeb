@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Linq;
-using System.Web.Http.ModelBinding;
 using System.Web.Mvc;
 using AthleticsSocialWeb.Common;
-using AthleticsSocialWeb.Common.Nlog;
-using log4net;
-using SimpleInjector;
+using AthleticsSocialWeb.Common.Logging;
 
 namespace AthleticsSocialWeb.Controllers
 {

@@ -1,0 +1,67 @@
+﻿@model IEnumerable<AthleticsSocialWeb.Models.LoggingIndexModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+    <div>
+        View :
+        <strong>List</strong>
+        | <%: Html.ActionLink("Chart", "Chart")%>
+        | <%: Html.ActionLink("RSS", "RssFeed", new { LoggerProviderName = Model.LoggerProviderName, Period = Model.Period, LogLevel = Model.LogLevel }, new { target = "_blank" })%>
+    </div>
+    
+    
+    
+
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.LoggerProviderName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LogLevel)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Period)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CurrentPageIndex)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PageSize)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.LoggerProviderName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LogLevel)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Period)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CurrentPageIndex)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PageSize)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

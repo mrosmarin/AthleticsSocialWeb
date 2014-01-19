@@ -1,0 +1,205 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HealthModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="aspnet_Applications">
+    <Key>
+      <PropertyRef Name="ApplicationId" />
+    </Key>
+    <Property Name="ApplicationName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LoweredApplicationName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ApplicationId" Type="Guid" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="aspnet_Users" Relationship="Self.FK__aspnet_Us__Appli__276EDEB3" FromRole="aspnet_Applications" ToRole="aspnet_Users" />
+  </EntityType>
+  <EntityType Name="aspnet_SchemaVersions">
+    <Key>
+      <PropertyRef Name="Feature" />
+      <PropertyRef Name="CompatibleSchemaVersion" />
+    </Key>
+    <Property Name="Feature" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CompatibleSchemaVersion" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IsCurrentVersion" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="aspnet_Users">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="ApplicationId" Type="Guid" Nullable="false" />
+    <Property Name="UserId" Type="Guid" Nullable="false" />
+    <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LoweredUserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MobileAlias" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+    <Property Name="IsAnonymous" Type="Boolean" Nullable="false" />
+    <Property Name="LastActivityDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="aspnet_Applications" Relationship="Self.FK__aspnet_Us__Appli__276EDEB3" FromRole="aspnet_Users" ToRole="aspnet_Applications" />
+  </EntityType>
+  <EntityType Name="aspnet_WebEvent_ErrorCodes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="EventCode" Type="Int32" Nullable="false" />
+    <Property Name="Level" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="aspnet_WebEvent_Events">
+    <Key>
+      <PropertyRef Name="EventId" />
+    </Key>
+    <Property Name="EventId" Type="String" MaxLength="32" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="EventTimeUtc" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="EventTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="EventType" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="EventSequence" Type="Decimal" Precision="19" Scale="0" Nullable="false" />
+    <Property Name="EventOccurrence" Type="Decimal" Precision="19" Scale="0" Nullable="false" />
+    <Property Name="EventCode" Type="Int32" Nullable="false" />
+    <Property Name="EventDetailCode" Type="Int32" Nullable="false" />
+    <Property Name="Message" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+    <Property Name="ApplicationPath" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="ApplicationVirtualPath" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="MachineName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="RequestUrl" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+    <Property Name="ExceptionType" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="Details" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="vw_aspnet_Applications">
+    <Key>
+      <PropertyRef Name="ApplicationName" />
+      <PropertyRef Name="LoweredApplicationName" />
+      <PropertyRef Name="ApplicationId" />
+    </Key>
+    <Property Name="ApplicationName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LoweredApplicationName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ApplicationId" Type="Guid" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="vw_aspnet_Users">
+    <Key>
+      <PropertyRef Name="ApplicationId" />
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="UserName" />
+      <PropertyRef Name="LoweredUserName" />
+      <PropertyRef Name="IsAnonymous" />
+      <PropertyRef Name="LastActivityDate" />
+    </Key>
+    <Property Name="ApplicationId" Type="Guid" Nullable="false" />
+    <Property Name="UserId" Type="Guid" Nullable="false" />
+    <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LoweredUserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MobileAlias" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+    <Property Name="IsAnonymous" Type="Boolean" Nullable="false" />
+    <Property Name="LastActivityDate" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="vw_aspnet_WebEvents_extended">
+    <Key>
+      <PropertyRef Name="EventId" />
+      <PropertyRef Name="EventTimeUtc" />
+      <PropertyRef Name="EventTime" />
+      <PropertyRef Name="EventType" />
+      <PropertyRef Name="EventSequence" />
+      <PropertyRef Name="EventOccurrence" />
+      <PropertyRef Name="EventCode" />
+      <PropertyRef Name="EventDetailCode" />
+      <PropertyRef Name="MachineName" />
+      <PropertyRef Name="Level" />
+    </Key>
+    <Property Name="EventId" Type="String" MaxLength="32" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="EventTimeUtc" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="EventTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="EventType" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="EventSequence" Type="Decimal" Precision="19" Scale="0" Nullable="false" />
+    <Property Name="EventOccurrence" Type="Decimal" Precision="19" Scale="0" Nullable="false" />
+    <Property Name="EventCode" Type="Int32" Nullable="false" />
+    <Property Name="EventDetailCode" Type="Int32" Nullable="false" />
+    <Property Name="Message" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+    <Property Name="ApplicationPath" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="ApplicationVirtualPath" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="MachineName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="RequestUrl" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+    <Property Name="ExceptionType" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="Details" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Level" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__aspnet_Us__Appli__276EDEB3">
+    <End Role="aspnet_Applications" Type="Self.aspnet_Applications" Multiplicity="1" />
+    <End Role="aspnet_Users" Type="Self.aspnet_Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="aspnet_Applications">
+        <PropertyRef Name="ApplicationId" />
+      </Principal>
+      <Dependent Role="aspnet_Users">
+        <PropertyRef Name="ApplicationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Health" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="aspnet_Applications" EntityType="Self.aspnet_Applications" />
+    <EntitySet Name="aspnet_SchemaVersions" EntityType="Self.aspnet_SchemaVersions" />
+    <EntitySet Name="aspnet_Users" EntityType="Self.aspnet_Users" />
+    <EntitySet Name="aspnet_WebEvent_ErrorCodes" EntityType="Self.aspnet_WebEvent_ErrorCodes" />
+    <EntitySet Name="aspnet_WebEvent_Events" EntityType="Self.aspnet_WebEvent_Events" />
+    <EntitySet Name="vw_aspnet_Applications" EntityType="Self.vw_aspnet_Applications" />
+    <EntitySet Name="vw_aspnet_Users" EntityType="Self.vw_aspnet_Users" />
+    <EntitySet Name="vw_aspnet_WebEvents_extended" EntityType="Self.vw_aspnet_WebEvents_extended" />
+    <AssociationSet Name="FK__aspnet_Us__Appli__276EDEB3" Association="Self.FK__aspnet_Us__Appli__276EDEB3">
+      <End Role="aspnet_Applications" EntitySet="aspnet_Applications" />
+      <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+    </AssociationSet>
+    <FunctionImport Name="aspnet_AnyDataInTables">
+      <Parameter Name="TablesToCheck" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="aspnet_Applications_CreateApplication">
+      <Parameter Name="ApplicationName" Mode="In" Type="String" />
+      <Parameter Name="ApplicationId" Mode="InOut" Type="Guid" />
+    </FunctionImport>
+    <FunctionImport Name="aspnet_CheckSchemaVersion">
+      <Parameter Name="Feature" Mode="In" Type="String" />
+      <Parameter Name="CompatibleSchemaVersion" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="aspnet_RegisterSchemaVersion">
+      <Parameter Name="Feature" Mode="In" Type="String" />
+      <Parameter Name="CompatibleSchemaVersion" Mode="In" Type="String" />
+      <Parameter Name="IsCurrentVersion" Mode="In" Type="Boolean" />
+      <Parameter Name="RemoveIncompatibleSchema" Mode="In" Type="Boolean" />
+    </FunctionImport>
+    <FunctionImport Name="aspnet_Setup_RemoveAllRoleMembers">
+      <Parameter Name="name" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="aspnet_Setup_RestorePermissions">
+      <Parameter Name="name" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="aspnet_UnRegisterSchemaVersion">
+      <Parameter Name="Feature" Mode="In" Type="String" />
+      <Parameter Name="CompatibleSchemaVersion" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="aspnet_Users_CreateUser">
+      <Parameter Name="ApplicationId" Mode="In" Type="Guid" />
+      <Parameter Name="UserName" Mode="In" Type="String" />
+      <Parameter Name="IsUserAnonymous" Mode="In" Type="Boolean" />
+      <Parameter Name="LastActivityDate" Mode="In" Type="DateTime" />
+      <Parameter Name="UserId" Mode="InOut" Type="Guid" />
+    </FunctionImport>
+    <FunctionImport Name="aspnet_Users_DeleteUser">
+      <Parameter Name="ApplicationName" Mode="In" Type="String" />
+      <Parameter Name="UserName" Mode="In" Type="String" />
+      <Parameter Name="TablesToDeleteFrom" Mode="In" Type="Int32" />
+      <Parameter Name="NumTablesDeletedFrom" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="aspnet_WebEvent_LogEvent">
+      <Parameter Name="EventId" Mode="In" Type="String" />
+      <Parameter Name="EventTimeUtc" Mode="In" Type="DateTime" />
+      <Parameter Name="EventTime" Mode="In" Type="DateTime" />
+      <Parameter Name="EventType" Mode="In" Type="String" />
+      <Parameter Name="EventSequence" Mode="In" Type="Decimal" />
+      <Parameter Name="EventOccurrence" Mode="In" Type="Decimal" />
+      <Parameter Name="EventCode" Mode="In" Type="Int32" />
+      <Parameter Name="EventDetailCode" Mode="In" Type="Int32" />
+      <Parameter Name="Message" Mode="In" Type="String" />
+      <Parameter Name="ApplicationPath" Mode="In" Type="String" />
+      <Parameter Name="ApplicationVirtualPath" Mode="In" Type="String" />
+      <Parameter Name="MachineName" Mode="In" Type="String" />
+      <Parameter Name="RequestUrl" Mode="In" Type="String" />
+      <Parameter Name="ExceptionType" Mode="In" Type="String" />
+      <Parameter Name="Details" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+</Schema>

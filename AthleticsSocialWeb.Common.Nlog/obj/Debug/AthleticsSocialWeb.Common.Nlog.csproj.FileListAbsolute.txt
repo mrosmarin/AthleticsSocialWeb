@@ -10,3 +10,13 @@ C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\Athle
 C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.Common.Nlog\bin\Debug\NLog.Extended.xml
 C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.Common.Nlog\obj\Debug\AthleticsSocialWeb.Common.Nlog.dll
 C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.Common.Nlog\obj\Debug\AthleticsSocialWeb.Common.Nlog.pdb
+C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.Common.Nlog\bin\Debug\System.Web.Mvc.dll
+C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.Common.Nlog\bin\Debug\System.Web.Razor.dll
+C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.Common.Nlog\bin\Debug\System.Web.WebPages.Razor.dll
+C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.Common.Nlog\bin\Debug\System.Web.WebPages.dll
+C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.Common.Nlog\bin\Debug\System.Web.WebPages.Deployment.dll
+C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.Common.Nlog\bin\Debug\System.Web.Mvc.xml
+C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.Common.Nlog\bin\Debug\System.Web.Razor.xml
+C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.Common.Nlog\bin\Debug\System.Web.WebPages.Razor.xml
+C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.Common.Nlog\bin\Debug\System.Web.WebPages.xml
+C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.Common.Nlog\bin\Debug\System.Web.WebPages.Deployment.xml

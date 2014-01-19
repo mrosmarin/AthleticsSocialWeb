@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="LoggingModelStoreContainer" CdmEntityContainer="Logging">
+    <EntitySetMapping Name="ELMAH_Error">
+      <EntityTypeMapping TypeName="LoggingModel.ELMAH_Error">
+        <MappingFragment StoreEntitySet="ELMAH_Error">
+          <ScalarProperty Name="ErrorId" ColumnName="ErrorId" />
+          <ScalarProperty Name="Application" ColumnName="Application" />
+          <ScalarProperty Name="Host" ColumnName="Host" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Source" ColumnName="Source" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="User" ColumnName="User" />
+          <ScalarProperty Name="StatusCode" ColumnName="StatusCode" />
+          <ScalarProperty Name="TimeUtc" ColumnName="TimeUtc" />
+          <ScalarProperty Name="Sequence" ColumnName="Sequence" />
+          <ScalarProperty Name="AllXml" ColumnName="AllXml" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NLog_Error">
+      <EntityTypeMapping TypeName="LoggingModel.NLog_Error">
+        <MappingFragment StoreEntitySet="NLog_Error">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="time_stamp" ColumnName="time_stamp" />
+          <ScalarProperty Name="host" ColumnName="host" />
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="source" ColumnName="source" />
+          <ScalarProperty Name="message" ColumnName="message" />
+          <ScalarProperty Name="level" ColumnName="level" />
+          <ScalarProperty Name="logger" ColumnName="logger" />
+          <ScalarProperty Name="stacktrace" ColumnName="stacktrace" />
+          <ScalarProperty Name="allxml" ColumnName="allxml" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Log4Net_Error">
+      <EntityTypeMapping TypeName="LoggingModel.Log4Net_Error">
+        <MappingFragment StoreEntitySet="Log4Net_Error">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Thread" ColumnName="Thread" />
+          <ScalarProperty Name="Level" ColumnName="Level" />
+          <ScalarProperty Name="Logger" ColumnName="Logger" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="Exception" ColumnName="Exception" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="ELMAH_GetErrorsXml" FunctionName="LoggingModel.Store.ELMAH_GetErrorsXml" />
+    <FunctionImportMapping FunctionImportName="ELMAH_GetErrorXml" FunctionName="LoggingModel.Store.ELMAH_GetErrorXml" />
+    <FunctionImportMapping FunctionImportName="ELMAH_LogError" FunctionName="LoggingModel.Store.ELMAH_LogError" />
+  </EntityContainerMapping>
+</Mapping>

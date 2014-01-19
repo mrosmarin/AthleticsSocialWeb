@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="LoggingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ELMAH_Error">
+    <Key>
+      <PropertyRef Name="ErrorId" />
+    </Key>
+    <Property Name="ErrorId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Application" Type="nvarchar" MaxLength="60" Nullable="false" />
+    <Property Name="Host" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Type" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Source" Type="nvarchar" MaxLength="60" Nullable="false" />
+    <Property Name="Message" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="User" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="StatusCode" Type="int" Nullable="false" />
+    <Property Name="TimeUtc" Type="datetime" Nullable="false" />
+    <Property Name="Sequence" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AllXml" Type="ntext" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'aspnet-AthleticsSocialWebLogging-20131208094747.dbo.Log4Net_Error' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Log4Net_Error">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="Date" />
+      <PropertyRef Name="Thread" />
+      <PropertyRef Name="Level" />
+      <PropertyRef Name="Logger" />
+      <PropertyRef Name="Message" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="Thread" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Level" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Logger" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="Message" Type="varchar" MaxLength="4000" Nullable="false" />
+    <Property Name="Exception" Type="varchar" MaxLength="2000" />
+  </EntityType>
+  <EntityType Name="NLog_Error">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="time_stamp" Type="datetime" Nullable="false" />
+    <Property Name="host" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="type" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="source" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="message" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="level" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="logger" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="stacktrace" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="allxml" Type="ntext" Nullable="false" />
+  </EntityType>
+  <Function Name="ELMAH_GetErrorsXml" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Application" Type="nvarchar" Mode="In" />
+    <Parameter Name="PageIndex" Type="int" Mode="In" />
+    <Parameter Name="PageSize" Type="int" Mode="In" />
+    <Parameter Name="TotalCount" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="ELMAH_GetErrorXml" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Application" Type="nvarchar" Mode="In" />
+    <Parameter Name="ErrorId" Type="uniqueidentifier" Mode="In" />
+  </Function>
+  <Function Name="ELMAH_LogError" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ErrorId" Type="uniqueidentifier" Mode="In" />
+    <Parameter Name="Application" Type="nvarchar" Mode="In" />
+    <Parameter Name="Host" Type="nvarchar" Mode="In" />
+    <Parameter Name="Type" Type="nvarchar" Mode="In" />
+    <Parameter Name="Source" Type="nvarchar" Mode="In" />
+    <Parameter Name="Message" Type="nvarchar" Mode="In" />
+    <Parameter Name="User" Type="nvarchar" Mode="In" />
+    <Parameter Name="AllXml" Type="ntext" Mode="In" />
+    <Parameter Name="StatusCode" Type="int" Mode="In" />
+    <Parameter Name="TimeUtc" Type="datetime" Mode="In" />
+  </Function>
+  <EntityContainer Name="LoggingModelStoreContainer">
+    <EntitySet Name="ELMAH_Error" EntityType="Self.ELMAH_Error" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NLog_Error" EntityType="Self.NLog_Error" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Log4Net_Error" EntityType="Self.Log4Net_Error" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Log4Net_Error].[Id] AS [Id], 
+    [Log4Net_Error].[Date] AS [Date], 
+    [Log4Net_Error].[Thread] AS [Thread], 
+    [Log4Net_Error].[Level] AS [Level], 
+    [Log4Net_Error].[Logger] AS [Logger], 
+    [Log4Net_Error].[Message] AS [Message], 
+    [Log4Net_Error].[Exception] AS [Exception]
+    FROM [dbo].[Log4Net_Error] AS [Log4Net_Error]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

@@ -18,3 +18,8 @@
 2014-01-04 00:22:00,661 [9] WARN  AthleticsSocialWeb.Controllers.SecretController [(null)] - this log4net1 logger
 2014-01-04 00:22:00,689 [9] INFO  AthleticsSocialWeb.Controllers.SecretController [(null)] - this log4net1 logger
 2014-01-04 00:22:00,719 [9] DEBUG AthleticsSocialWeb.Controllers.SecretController [(null)] - this log4net1 logger
+2014-01-04 21:54:08,335 [13] FATAL AthleticsSocialWeb.Controllers.SecretController [(null)] - this log4net1 logger
+2014-01-04 21:54:08,410 [13] ERROR AthleticsSocialWeb.Controllers.SecretController [(null)] - this log4net1 logger
+2014-01-04 21:54:08,437 [13] WARN  AthleticsSocialWeb.Controllers.SecretController [(null)] - this log4net1 logger
+2014-01-04 21:54:08,452 [13] INFO  AthleticsSocialWeb.Controllers.SecretController [(null)] - this log4net1 logger
+2014-01-04 21:54:08,467 [13] DEBUG AthleticsSocialWeb.Controllers.SecretController [(null)] - this log4net1 logger

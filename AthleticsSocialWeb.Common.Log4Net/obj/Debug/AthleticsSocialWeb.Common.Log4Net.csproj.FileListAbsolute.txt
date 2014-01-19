@@ -7,3 +7,13 @@ C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\Athle
 C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.Common.Log4Net\obj\Debug\AthleticsSocialWeb.Common.Log4Net.csprojResolveAssemblyReference.cache
 C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.Common.Log4Net\obj\Debug\AthleticsSocialWeb.Common.Log4Net.dll
 C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.Common.Log4Net\obj\Debug\AthleticsSocialWeb.Common.Log4Net.pdb
+C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.Common.Log4Net\bin\Debug\System.Web.Mvc.dll
+C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.Common.Log4Net\bin\Debug\System.Web.Razor.dll
+C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.Common.Log4Net\bin\Debug\System.Web.WebPages.Razor.dll
+C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.Common.Log4Net\bin\Debug\System.Web.WebPages.dll
+C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.Common.Log4Net\bin\Debug\System.Web.WebPages.Deployment.dll
+C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.Common.Log4Net\bin\Debug\System.Web.Mvc.xml
+C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.Common.Log4Net\bin\Debug\System.Web.Razor.xml
+C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.Common.Log4Net\bin\Debug\System.Web.WebPages.Razor.xml
+C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.Common.Log4Net\bin\Debug\System.Web.WebPages.xml
+C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.Common.Log4Net\bin\Debug\System.Web.WebPages.Deployment.xml

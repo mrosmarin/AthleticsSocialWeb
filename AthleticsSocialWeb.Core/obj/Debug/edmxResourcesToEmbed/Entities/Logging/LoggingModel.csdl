@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="LoggingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="ELMAH_Error">
+    <Key>
+      <PropertyRef Name="ErrorId" />
+    </Key>
+    <Property Name="ErrorId" Type="Guid" Nullable="false" />
+    <Property Name="Application" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Host" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Type" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Source" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Message" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="User" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StatusCode" Type="Int32" Nullable="false" />
+    <Property Name="TimeUtc" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Sequence" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AllXml" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="NLog_Error">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="time_stamp" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="host" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="source" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="level" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="logger" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="stacktrace" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="allxml" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Log4Net_Error">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="Date" />
+      <PropertyRef Name="Thread" />
+      <PropertyRef Name="Level" />
+      <PropertyRef Name="Logger" />
+      <PropertyRef Name="Message" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Thread" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Level" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Logger" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Message" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Exception" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityContainer Name="Logging" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="ELMAH_Error" EntityType="Self.ELMAH_Error" />
+    <EntitySet Name="NLog_Error" EntityType="Self.NLog_Error" />
+    <EntitySet Name="Log4Net_Error" EntityType="Self.Log4Net_Error" />
+    <FunctionImport Name="ELMAH_GetErrorsXml" ReturnType="Collection(String)">
+      <Parameter Name="Application" Mode="In" Type="String" />
+      <Parameter Name="PageIndex" Mode="In" Type="Int32" />
+      <Parameter Name="PageSize" Mode="In" Type="Int32" />
+      <Parameter Name="TotalCount" Mode="InOut" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="ELMAH_GetErrorXml" ReturnType="Collection(String)">
+      <Parameter Name="Application" Mode="In" Type="String" />
+      <Parameter Name="ErrorId" Mode="In" Type="Guid" />
+    </FunctionImport>
+    <FunctionImport Name="ELMAH_LogError">
+      <Parameter Name="ErrorId" Mode="In" Type="Guid" />
+      <Parameter Name="Application" Mode="In" Type="String" />
+      <Parameter Name="Host" Mode="In" Type="String" />
+      <Parameter Name="Type" Mode="In" Type="String" />
+      <Parameter Name="Source" Mode="In" Type="String" />
+      <Parameter Name="Message" Mode="In" Type="String" />
+      <Parameter Name="User" Mode="In" Type="String" />
+      <Parameter Name="AllXml" Mode="In" Type="String" />
+      <Parameter Name="StatusCode" Mode="In" Type="Int32" />
+      <Parameter Name="TimeUtc" Mode="In" Type="DateTime" />
+    </FunctionImport>
+  </EntityContainer>
+</Schema>

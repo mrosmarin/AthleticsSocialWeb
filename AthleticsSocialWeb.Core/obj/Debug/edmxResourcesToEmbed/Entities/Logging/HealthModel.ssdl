@@ -1,0 +1,245 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HealthModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="aspnet_Applications">
+    <Key>
+      <PropertyRef Name="ApplicationId" />
+    </Key>
+    <Property Name="ApplicationName" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="LoweredApplicationName" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="256" />
+  </EntityType>
+  <EntityType Name="aspnet_SchemaVersions">
+    <Key>
+      <PropertyRef Name="Feature" />
+      <PropertyRef Name="CompatibleSchemaVersion" />
+    </Key>
+    <Property Name="Feature" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="CompatibleSchemaVersion" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="IsCurrentVersion" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="aspnet_Users">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="LoweredUserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="MobileAlias" Type="nvarchar" MaxLength="16" />
+    <Property Name="IsAnonymous" Type="bit" Nullable="false" />
+    <Property Name="LastActivityDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="aspnet_WebEvent_ErrorCodes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="EventCode" Type="int" Nullable="false" />
+    <Property Name="Level" Type="nvarchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="aspnet_WebEvent_Events">
+    <Key>
+      <PropertyRef Name="EventId" />
+    </Key>
+    <Property Name="EventId" Type="char" MaxLength="32" Nullable="false" />
+    <Property Name="EventTimeUtc" Type="datetime" Nullable="false" />
+    <Property Name="EventTime" Type="datetime" Nullable="false" />
+    <Property Name="EventType" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="EventSequence" Type="decimal" Precision="19" Scale="0" Nullable="false" />
+    <Property Name="EventOccurrence" Type="decimal" Precision="19" Scale="0" Nullable="false" />
+    <Property Name="EventCode" Type="int" Nullable="false" />
+    <Property Name="EventDetailCode" Type="int" Nullable="false" />
+    <Property Name="Message" Type="nvarchar" MaxLength="1024" />
+    <Property Name="ApplicationPath" Type="nvarchar" MaxLength="256" />
+    <Property Name="ApplicationVirtualPath" Type="nvarchar" MaxLength="256" />
+    <Property Name="MachineName" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="RequestUrl" Type="nvarchar" MaxLength="1024" />
+    <Property Name="ExceptionType" Type="nvarchar" MaxLength="256" />
+    <Property Name="Details" Type="ntext" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'aspnet-AthleticsSocialWebHealth-20131208094747.dbo.vw_aspnet_Applications' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vw_aspnet_Applications">
+    <Key>
+      <PropertyRef Name="ApplicationName" />
+      <PropertyRef Name="LoweredApplicationName" />
+      <PropertyRef Name="ApplicationId" />
+    </Key>
+    <Property Name="ApplicationName" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="LoweredApplicationName" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="256" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'aspnet-AthleticsSocialWebHealth-20131208094747.dbo.vw_aspnet_Users' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vw_aspnet_Users">
+    <Key>
+      <PropertyRef Name="ApplicationId" />
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="UserName" />
+      <PropertyRef Name="LoweredUserName" />
+      <PropertyRef Name="IsAnonymous" />
+      <PropertyRef Name="LastActivityDate" />
+    </Key>
+    <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="LoweredUserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="MobileAlias" Type="nvarchar" MaxLength="16" />
+    <Property Name="IsAnonymous" Type="bit" Nullable="false" />
+    <Property Name="LastActivityDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'aspnet-AthleticsSocialWebHealth-20131208094747.dbo.vw_aspnet_WebEvents_extended' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vw_aspnet_WebEvents_extended">
+    <Key>
+      <PropertyRef Name="EventId" />
+      <PropertyRef Name="EventTimeUtc" />
+      <PropertyRef Name="EventTime" />
+      <PropertyRef Name="EventType" />
+      <PropertyRef Name="EventSequence" />
+      <PropertyRef Name="EventOccurrence" />
+      <PropertyRef Name="EventCode" />
+      <PropertyRef Name="EventDetailCode" />
+      <PropertyRef Name="MachineName" />
+      <PropertyRef Name="Level" />
+    </Key>
+    <Property Name="EventId" Type="char" MaxLength="32" Nullable="false" />
+    <Property Name="EventTimeUtc" Type="datetime" Nullable="false" />
+    <Property Name="EventTime" Type="datetime" Nullable="false" />
+    <Property Name="EventType" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="EventSequence" Type="decimal" Precision="19" Scale="0" Nullable="false" />
+    <Property Name="EventOccurrence" Type="decimal" Precision="19" Scale="0" Nullable="false" />
+    <Property Name="EventCode" Type="int" Nullable="false" />
+    <Property Name="EventDetailCode" Type="int" Nullable="false" />
+    <Property Name="Message" Type="nvarchar" MaxLength="1024" />
+    <Property Name="ApplicationPath" Type="nvarchar" MaxLength="256" />
+    <Property Name="ApplicationVirtualPath" Type="nvarchar" MaxLength="256" />
+    <Property Name="MachineName" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="RequestUrl" Type="nvarchar" MaxLength="1024" />
+    <Property Name="ExceptionType" Type="nvarchar" MaxLength="256" />
+    <Property Name="Details" Type="ntext" />
+    <Property Name="Level" Type="nvarchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__aspnet_Us__Appli__276EDEB3">
+    <End Role="aspnet_Applications" Type="Self.aspnet_Applications" Multiplicity="1" />
+    <End Role="aspnet_Users" Type="Self.aspnet_Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="aspnet_Applications">
+        <PropertyRef Name="ApplicationId" />
+      </Principal>
+      <Dependent Role="aspnet_Users">
+        <PropertyRef Name="ApplicationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="aspnet_AnyDataInTables" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TablesToCheck" Type="int" Mode="In" />
+  </Function>
+  <Function Name="aspnet_Applications_CreateApplication" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ApplicationName" Type="nvarchar" Mode="In" />
+    <Parameter Name="ApplicationId" Type="uniqueidentifier" Mode="InOut" />
+  </Function>
+  <Function Name="aspnet_CheckSchemaVersion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Feature" Type="nvarchar" Mode="In" />
+    <Parameter Name="CompatibleSchemaVersion" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="aspnet_RegisterSchemaVersion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Feature" Type="nvarchar" Mode="In" />
+    <Parameter Name="CompatibleSchemaVersion" Type="nvarchar" Mode="In" />
+    <Parameter Name="IsCurrentVersion" Type="bit" Mode="In" />
+    <Parameter Name="RemoveIncompatibleSchema" Type="bit" Mode="In" />
+  </Function>
+  <Function Name="aspnet_Setup_RemoveAllRoleMembers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="name" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="aspnet_Setup_RestorePermissions" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="name" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="aspnet_UnRegisterSchemaVersion" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Feature" Type="nvarchar" Mode="In" />
+    <Parameter Name="CompatibleSchemaVersion" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="aspnet_Users_CreateUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ApplicationId" Type="uniqueidentifier" Mode="In" />
+    <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+    <Parameter Name="IsUserAnonymous" Type="bit" Mode="In" />
+    <Parameter Name="LastActivityDate" Type="datetime" Mode="In" />
+    <Parameter Name="UserId" Type="uniqueidentifier" Mode="InOut" />
+  </Function>
+  <Function Name="aspnet_Users_DeleteUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ApplicationName" Type="nvarchar" Mode="In" />
+    <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+    <Parameter Name="TablesToDeleteFrom" Type="int" Mode="In" />
+    <Parameter Name="NumTablesDeletedFrom" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="aspnet_WebEvent_LogEvent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="EventId" Type="char" Mode="In" />
+    <Parameter Name="EventTimeUtc" Type="datetime" Mode="In" />
+    <Parameter Name="EventTime" Type="datetime" Mode="In" />
+    <Parameter Name="EventType" Type="nvarchar" Mode="In" />
+    <Parameter Name="EventSequence" Type="decimal" Mode="In" />
+    <Parameter Name="EventOccurrence" Type="decimal" Mode="In" />
+    <Parameter Name="EventCode" Type="int" Mode="In" />
+    <Parameter Name="EventDetailCode" Type="int" Mode="In" />
+    <Parameter Name="Message" Type="nvarchar" Mode="In" />
+    <Parameter Name="ApplicationPath" Type="nvarchar" Mode="In" />
+    <Parameter Name="ApplicationVirtualPath" Type="nvarchar" Mode="In" />
+    <Parameter Name="MachineName" Type="nvarchar" Mode="In" />
+    <Parameter Name="RequestUrl" Type="nvarchar" Mode="In" />
+    <Parameter Name="ExceptionType" Type="nvarchar" Mode="In" />
+    <Parameter Name="Details" Type="ntext" Mode="In" />
+  </Function>
+  <EntityContainer Name="HealthModelStoreContainer">
+    <EntitySet Name="aspnet_Applications" EntityType="Self.aspnet_Applications" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="aspnet_SchemaVersions" EntityType="Self.aspnet_SchemaVersions" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="aspnet_Users" EntityType="Self.aspnet_Users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="aspnet_WebEvent_ErrorCodes" EntityType="Self.aspnet_WebEvent_ErrorCodes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="aspnet_WebEvent_Events" EntityType="Self.aspnet_WebEvent_Events" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="vw_aspnet_Applications" EntityType="Self.vw_aspnet_Applications" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vw_aspnet_Applications].[ApplicationName] AS [ApplicationName], 
+    [vw_aspnet_Applications].[LoweredApplicationName] AS [LoweredApplicationName], 
+    [vw_aspnet_Applications].[ApplicationId] AS [ApplicationId], 
+    [vw_aspnet_Applications].[Description] AS [Description]
+    FROM [dbo].[vw_aspnet_Applications] AS [vw_aspnet_Applications]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vw_aspnet_Users" EntityType="Self.vw_aspnet_Users" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vw_aspnet_Users].[ApplicationId] AS [ApplicationId], 
+    [vw_aspnet_Users].[UserId] AS [UserId], 
+    [vw_aspnet_Users].[UserName] AS [UserName], 
+    [vw_aspnet_Users].[LoweredUserName] AS [LoweredUserName], 
+    [vw_aspnet_Users].[MobileAlias] AS [MobileAlias], 
+    [vw_aspnet_Users].[IsAnonymous] AS [IsAnonymous], 
+    [vw_aspnet_Users].[LastActivityDate] AS [LastActivityDate]
+    FROM [dbo].[vw_aspnet_Users] AS [vw_aspnet_Users]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vw_aspnet_WebEvents_extended" EntityType="Self.vw_aspnet_WebEvents_extended" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vw_aspnet_WebEvents_extended].[EventId] AS [EventId], 
+    [vw_aspnet_WebEvents_extended].[EventTimeUtc] AS [EventTimeUtc], 
+    [vw_aspnet_WebEvents_extended].[EventTime] AS [EventTime], 
+    [vw_aspnet_WebEvents_extended].[EventType] AS [EventType], 
+    [vw_aspnet_WebEvents_extended].[EventSequence] AS [EventSequence], 
+    [vw_aspnet_WebEvents_extended].[EventOccurrence] AS [EventOccurrence], 
+    [vw_aspnet_WebEvents_extended].[EventCode] AS [EventCode], 
+    [vw_aspnet_WebEvents_extended].[EventDetailCode] AS [EventDetailCode], 
+    [vw_aspnet_WebEvents_extended].[Message] AS [Message], 
+    [vw_aspnet_WebEvents_extended].[ApplicationPath] AS [ApplicationPath], 
+    [vw_aspnet_WebEvents_extended].[ApplicationVirtualPath] AS [ApplicationVirtualPath], 
+    [vw_aspnet_WebEvents_extended].[MachineName] AS [MachineName], 
+    [vw_aspnet_WebEvents_extended].[RequestUrl] AS [RequestUrl], 
+    [vw_aspnet_WebEvents_extended].[ExceptionType] AS [ExceptionType], 
+    [vw_aspnet_WebEvents_extended].[Details] AS [Details], 
+    [vw_aspnet_WebEvents_extended].[Level] AS [Level]
+    FROM [dbo].[vw_aspnet_WebEvents_extended] AS [vw_aspnet_WebEvents_extended]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK__aspnet_Us__Appli__276EDEB3" Association="Self.FK__aspnet_Us__Appli__276EDEB3">
+      <End Role="aspnet_Applications" EntitySet="aspnet_Applications" />
+      <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

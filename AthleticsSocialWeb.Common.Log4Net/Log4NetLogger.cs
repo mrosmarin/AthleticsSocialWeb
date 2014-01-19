@@ -1,6 +1,7 @@
 ﻿
 
 using System;
+using AthleticsSocialWeb.Common.Logging;
 using log4net;
 
 namespace AthleticsSocialWeb.Common.Log4Net
