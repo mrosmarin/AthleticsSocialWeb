@@ -19,15 +19,17 @@ namespace AthleticsSocialWeb
 
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
                 "~/Scripts/app/ajaxPrefilters.js",
-                "~/Scripts/app/app.bindings.js",
+             //   "~/Scripts/app/app.bindings.js",
                 "~/Scripts/app/app.datamodel.js",
                 "~/Scripts/app/app.viewmodel.js",
                 "~/Scripts/app/home.viewmodel.js",
                 "~/Scripts/app/login.viewmodel.js",
                 "~/Scripts/app/register.viewmodel.js",
+                "~/Scripts/app/registerConfirm.viewmodel.js",
                 "~/Scripts/app/registerExternal.viewmodel.js",
                 "~/Scripts/app/manage.viewmodel.js",
                 "~/Scripts/app/userInfo.viewmodel.js",
+                "~/Scripts/app/verifyEmail.viewmodel.js",
                 "~/Scripts/app/_run.js"));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
@@ -37,10 +39,12 @@ namespace AthleticsSocialWeb
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                 "~/Scripts/bootstrap.js",
+                "~/Scripts/bootstrap-dialog.js",
                 "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                  "~/Content/bootstrap.css",
+                 "~/Content/bootstrap-dialog.css",
                  "~/Content/Site.css"));
         }
     }

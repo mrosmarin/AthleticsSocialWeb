@@ -10,8 +10,10 @@
         removeLoginUrl = "/api/Account/RemoveLogin",
         setPasswordUrl = "/api/Account/setPassword",
         siteUrl = "/",
+        resendEmailUrl = "/api/Account/ResendEmail",
+        verifyEmailUrl = "api/Account/VerifyEmail",
         userInfoUrl = "/api/Account/UserInfo";
-
+    
     // Route operations
     function externalLoginsUrl(returnUrl, generateState) {
         return "/api/Account/ExternalLogins?returnUrl=" + (encodeURIComponent(returnUrl)) +
@@ -125,6 +127,26 @@
             headers: headers
         });
     };
+    
+
+    self.resendEmail = function (accessToken) {
+        var headers;
+
+        if (typeof (accessToken) !== "undefined") {
+            headers = {
+                "Authorization": "Bearer " + accessToken
+            };
+        } else {
+            headers = getSecurityHeaders();
+        }
+
+        return $.ajax(resendEmailUrl, {
+            cache: false,
+            type: "POST",
+            headers: headers
+        });
+    };
+
 
     self.login = function (data) {
         return $.ajax(loginUrl, {
@@ -172,4 +194,12 @@
             headers: getSecurityHeaders()
         });
     };
+    
+    self.sendVerifyEmailToken = function (data) {
+        return $.ajax(verifyEmailUrl, {
+            type: "POST",
+            data: data
+        });
+    };
+
 }

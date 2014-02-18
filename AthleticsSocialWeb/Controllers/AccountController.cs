@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
 using System.Net.Http;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
-using AthleticsSocialWeb.Common;
+using AthleticsSocialWeb.Common.Helpers;
 using AthleticsSocialWeb.Common.Logging;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
@@ -16,6 +18,7 @@ using Microsoft.Owin.Security.OAuth;
 using AthleticsSocialWeb.Models;
 using AthleticsSocialWeb.Providers;
 using AthleticsSocialWeb.Results;
+using Postal;
 
 namespace AthleticsSocialWeb.Controllers
 {
@@ -33,7 +36,7 @@ namespace AthleticsSocialWeb.Controllers
         //        AccessTokenFormat = Startup.OAuthOptions.AccessTokenFormat;
         //}
 
-        public AccountController(UserManager<Startup.ApplicationUser> userManager,
+        public AccountController(AppUserManager userManager,
             ISecureDataFormat<AuthenticationTicket> accessTokenFormat, ILogger logger)
         {
             UserManager = userManager;
@@ -41,22 +44,31 @@ namespace AthleticsSocialWeb.Controllers
             Logger = logger;
         }
 
-        public UserManager<Startup.ApplicationUser> UserManager { get; private set; }
+        public AppUserManager UserManager { get; private set; }
         public ISecureDataFormat<AuthenticationTicket> AccessTokenFormat { get; private set; }
 
         // GET api/Account/UserInfo
         [HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
         [Route("UserInfo")]
-        public UserInfoViewModel GetUserInfo()
+        public async Task<UserInfoViewModel> GetUserInfo()
         {
             ExternalLoginData externalLogin = ExternalLoginData.FromIdentity(User.Identity as ClaimsIdentity);
 
-            return new UserInfoViewModel
+            Func<Task<bool>> isConfirmAsync = async () =>
+            {
+                var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+                return user.EmailVerified;
+            };
+
+            var u =  new UserInfoViewModel
             {
                 UserName = User.Identity.GetUserName(),
+                IsConfirmed = await isConfirmAsync(),
                 HasRegistered = externalLogin == null,
                 LoginProvider = externalLogin != null ? externalLogin.LoginProvider : null
             };
+
+            return u;
         }
 
         // POST api/Account/Logout
@@ -153,39 +165,25 @@ namespace AthleticsSocialWeb.Controllers
         public async Task<IHttpActionResult> AddExternalLogin(AddExternalLoginBindingModel model)
         {
             if (!ModelState.IsValid)
-            {
                 return BadRequest(ModelState);
-            }
 
             Authentication.SignOut(DefaultAuthenticationTypes.ExternalCookie);
-
-            AuthenticationTicket ticket = AccessTokenFormat.Unprotect(model.ExternalAccessToken);
+            var ticket = AccessTokenFormat.Unprotect(model.ExternalAccessToken);
 
             if (ticket == null || ticket.Identity == null || (ticket.Properties != null
-                && ticket.Properties.ExpiresUtc.HasValue
-                && ticket.Properties.ExpiresUtc.Value < DateTimeOffset.UtcNow))
-            {
+                                            && ticket.Properties.ExpiresUtc.HasValue
+                                            && ticket.Properties.ExpiresUtc.Value < DateTimeOffset.UtcNow))
                 return BadRequest("External login failure.");
-            }
 
-            ExternalLoginData externalData = ExternalLoginData.FromIdentity(ticket.Identity);
-
+            var externalData = ExternalLoginData.FromIdentity(ticket.Identity);
             if (externalData == null)
-            {
                 return BadRequest("The external login is already associated with an account.");
-            }
 
-            IdentityResult result = await UserManager.AddLoginAsync(User.Identity.GetUserId(),
+            var result = await UserManager.AddLoginAsync(User.Identity.GetUserId(),
                 new UserLoginInfo(externalData.LoginProvider, externalData.ProviderKey));
 
-            IHttpActionResult errorResult = GetErrorResult(result);
-
-            if (errorResult != null)
-            {
-                return errorResult;
-            }
-
-            return Ok();
+            var errorResult = GetErrorResult(result);
+            return errorResult ?? Ok();
         }
 
         // POST api/Account/RemoveLogin
@@ -261,7 +259,7 @@ namespace AthleticsSocialWeb.Controllers
                     OAuthDefaults.AuthenticationType);
                 var cookieIdentity = await UserManager.CreateIdentityAsync(user,
                     CookieAuthenticationDefaults.AuthenticationType);
-                var properties = ApplicationOAuthProvider.CreateProperties(user.UserName);
+                var properties = ApplicationOAuthProvider.CreateProperties(user.UserName,user.EmailVerified);
                 Authentication.SignIn(properties, oAuthIdentity, cookieIdentity);
             }
             else
@@ -311,7 +309,39 @@ namespace AthleticsSocialWeb.Controllers
                 logins.Add(login);
             }
 
+            //Dumpy data
+            logins.Add(new ExternalLoginViewModel { Name = "Facebook", Url = "/"});
+            logins.Add(new ExternalLoginViewModel { Name = "Twitter", Url = "/" });
+            logins.Add(new ExternalLoginViewModel { Name = "LinkedIn", Url = "/" });
+            logins.Add(new ExternalLoginViewModel { Name = "Tumblr", Url = "/" });
+            logins.Add(new ExternalLoginViewModel { Name = "Instagram", Url = "/" });
+            logins.Add(new ExternalLoginViewModel { Name = "LinkedIn", Url = "/" });
             return logins;
+        }
+
+        // POST api/Account/ResendEmail
+        [Route("ResendEmail")]
+        public async Task<bool> ResendEmailConfirmation()
+        {
+            var userinfo = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+            return await SendEmailConfirmation(userinfo.UserName, userinfo.UserName, userinfo.ConfirmationToken);
+        }
+
+        // POST api/Account/VerifyEmail
+
+        [OverrideAuthentication]
+        [AllowAnonymous]
+        [Route("VerifyEmail")]
+        [HttpPost]
+        public async Task<bool> VerifyToken([FromBody]string token)
+        {
+            var user = await UserManager.UserContext.Users.SingleOrDefaultAsync(u => u.ConfirmationToken == token);
+            if (user != null){
+                user.EmailVerified = true;
+                var result = await UserManager.UpdateAsync(user);
+                return result.Succeeded;
+            }
+            return false;
         }
 
         // POST api/Account/Register
@@ -320,17 +350,20 @@ namespace AthleticsSocialWeb.Controllers
         public async Task<IHttpActionResult> Register(RegisterBindingModel model)
         {
             if (!ModelState.IsValid)
-            {
                 return BadRequest(ModelState);
-            }
 
-            var user = new Startup.ApplicationUser
+            string confirmationToken = CreateConfirmationToken();
+            var user = new ApplicationUser
             {
-                UserName = model.UserName
+                UserName = model.UserName,
+                ConfirmationToken = confirmationToken,
+                EmailVerified = false
             };
 
             var result = await UserManager.CreateAsync(user, model.Password);
             var errorResult = GetErrorResult(result);
+            if (result.Succeeded)
+                await SendEmailConfirmation(model.UserName, model.UserName, confirmationToken);
 
             return errorResult ?? Ok();
         }
@@ -342,18 +375,14 @@ namespace AthleticsSocialWeb.Controllers
         public async Task<IHttpActionResult> RegisterExternal(RegisterExternalBindingModel model)
         {
             if (!ModelState.IsValid)
-            {
                 return BadRequest(ModelState);
-            }
 
             var externalLogin = ExternalLoginData.FromIdentity(User.Identity as ClaimsIdentity);
 
             if (externalLogin == null)
-            {
                 return InternalServerError();
-            }
 
-            var user = new Startup.ApplicationUser
+            var user = new ApplicationUser
             {
                 UserName = model.UserName
             };
@@ -362,15 +391,10 @@ namespace AthleticsSocialWeb.Controllers
                 LoginProvider = externalLogin.LoginProvider,
                 ProviderKey = externalLogin.ProviderKey
             });
-            IdentityResult result = await UserManager.CreateAsync(user);
-            IHttpActionResult errorResult = GetErrorResult(result);
+            var result = await UserManager.CreateAsync(user);
+            var errorResult = GetErrorResult(result);
 
-            if (errorResult != null)
-            {
-                return errorResult;
-            }
-
-            return Ok();
+            return errorResult ?? Ok();
         }
 
         protected override void Dispose(bool disposing)
@@ -384,6 +408,30 @@ namespace AthleticsSocialWeb.Controllers
         }
 
         #region Helpers
+
+
+        private async Task<bool> SendEmailConfirmation(string to, string username, string confirmationToken)
+        {
+            try
+            {
+                dynamic email = new Email("ConfirmEmail");
+                email.To = to;
+                email.UserName = username;
+                email.ConfirmationToken = confirmationToken;
+                await ((Email)email).SendAsync();
+                return true;
+
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        private string CreateConfirmationToken()
+        {
+            return ShortGuid.NewGuid();
+        }
 
         private IAuthenticationManager Authentication
         {

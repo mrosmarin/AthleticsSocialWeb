@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using AthleticsSocialWeb.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
@@ -11,9 +12,9 @@ namespace AthleticsSocialWeb.Providers
     public class ApplicationOAuthProvider : OAuthAuthorizationServerProvider
     {
         private readonly string _publicClientId;
-        private readonly Func<UserManager<Startup.ApplicationUser>> _userManagerFactory;
+        private readonly Func<UserManager<ApplicationUser>> _userManagerFactory;
 
-        public ApplicationOAuthProvider(string publicClientId, Func<UserManager<Startup.ApplicationUser>> userManagerFactory)
+        public ApplicationOAuthProvider(string publicClientId, Func<UserManager<ApplicationUser>> userManagerFactory)
         {
             if (publicClientId == null)
                 throw new ArgumentNullException("publicClientId");
@@ -41,7 +42,7 @@ namespace AthleticsSocialWeb.Providers
                     context.Options.AuthenticationType);
                 var cookiesIdentity = await userManager.CreateIdentityAsync(user,
                     CookieAuthenticationDefaults.AuthenticationType);
-                var properties = CreateProperties(user.UserName);
+                var properties = CreateProperties(user.UserName, user.EmailVerified);
                 var ticket = new AuthenticationTicket(oAuthIdentity, properties);
                 context.Validated(ticket);
                 context.Request.Context.Authentication.SignIn(cookiesIdentity);
@@ -51,9 +52,7 @@ namespace AthleticsSocialWeb.Providers
         public override Task TokenEndpoint(OAuthTokenEndpointContext context)
         {
             foreach (var property in context.Properties.Dictionary)
-            {
                 context.AdditionalResponseParameters.Add(property.Key, property.Value);
-            }
 
             return Task.FromResult<object>(null);
         }
@@ -62,9 +61,7 @@ namespace AthleticsSocialWeb.Providers
         {
             // Resource owner password credentials does not provide a client ID.
             if (context.ClientId == null)
-            {
                 context.Validated();
-            }
 
             return Task.FromResult<object>(null);
         }
@@ -80,11 +77,12 @@ namespace AthleticsSocialWeb.Providers
             return Task.FromResult<object>(null);
         }
 
-        public static AuthenticationProperties CreateProperties(string userName)
+        public static AuthenticationProperties CreateProperties(string userName, bool isVerified)
         {
-            IDictionary<string, string> data = new Dictionary<string, string>
+            var data = new Dictionary<string, string>
             {
-                { "userName", userName }
+                { "userName", userName },
+                {"isConfirmed", isVerified.ToString().ToLower()}
             };
             return new AuthenticationProperties(data);
         }

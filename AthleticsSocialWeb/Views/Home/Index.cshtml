@@ -6,7 +6,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>My ASP.NET Application</title>
+    <title>Social Crossfit</title>
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <meta name="viewport" content="width=device-width" />
     @Styles.Render("~/Content/css")
@@ -23,7 +23,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <p class="navbar-brand" data-bind="if: !loggedIn()">Application Name</p>
+                    <p class="navbar-brand" data-bind="if: !loggedIn()">Social Crossfit</p>
                     <a href="#" class="navbar-brand" data-bind="if: loggedIn, click: navigateToHome">Application Name</a>
                 </div>
                 <div data-bind="if: loggedIn" class="navbar-collapse collapse">
@@ -48,10 +48,12 @@
         @Html.Partial("_Login")
         @Html.Partial("_Register")
         @Html.Partial("_RegisterExternal")
+        @Html.Partial("_RegisterConfirm")
         @Html.Partial("_Manage")
+        @Html.Partial("_VerifyEmail")
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - Boximiti, LLC</p>
         </footer>
     </div>
 

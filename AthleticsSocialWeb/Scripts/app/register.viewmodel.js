@@ -1,8 +1,23 @@
 ﻿function RegisterViewModel(app, dataModel) {
     var self = this;
+    
+    //TODO put in a global place for validation
+    self.patterns = {
+        email: /^([\d\w-\.]+@([\d\w-]+\.)+[\w]{2,4})?$/,
+        phone: /^\d[\d -]*\d$/,
+        postcode: /^([a-zA-Z]{1,2}[0-9][0-9]?[a-zA-Z\s]?\s*[0-9][a-zA-Z]{2,2})|(GIR 0AA)$/,
+        policy: /^(?=.{9,})(?=[a-z]*)(?=.*[A-Z])(?=.*[0-9])(?=.*\p{Punct}).*$/
+    };
+
 
     // Data
-    self.userName = ko.observable("").extend({ required: true });
+    self.userName = ko.observable("").extend({
+        required: true, pattern: {
+            message: 'Must be a valid Email Address',
+            params: self.patterns.email
+        }
+    });
+    
     self.password = ko.observable("").extend({ required: true });
     self.confirmPassword = ko.observable("").extend({ required: true, equal: self.password });
 
@@ -32,8 +47,9 @@
             }).done(function (data) {
                 self.registering(false);
 
+                data.isConfirmed = JSON.parse(data.isConfirmed);
                 if (data.userName && data.access_token) {
-                    app.navigateToLoggedIn(data.userName, data.access_token, false /* persistent */);
+                    app.navigateToLoggedIn(data, data.access_token, false /* persistent */);
                 } else {
                     self.errors.push("An unknown error occurred.");
                 }

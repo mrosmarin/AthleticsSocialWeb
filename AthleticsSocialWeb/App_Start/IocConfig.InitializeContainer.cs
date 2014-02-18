@@ -15,7 +15,6 @@ namespace AthleticsSocialWeb
             // For instance:
             // container.Register<IUserRepository, SqlUserRepository>();
 
-            //Startup.UserManagerFactory(), Startup.OAuthOptions.AccessTokenFormat
             container.Register(() => Startup.UserManagerFactory());
             container.Register(() => Startup.OAuthOptions.AccessTokenFormat);
             container.Register(() => GlobalConfiguration.Configuration);

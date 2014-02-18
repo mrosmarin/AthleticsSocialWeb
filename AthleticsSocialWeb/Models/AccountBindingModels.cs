@@ -36,6 +36,8 @@ namespace AthleticsSocialWeb.Models
     {
         [Required]
         [Display(Name = "User name")]
+        [DataType(DataType.EmailAddress)]
+        [EmailAddress]
         public string UserName { get; set; }
 
         [Required]

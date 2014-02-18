@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Threading.Tasks;
 
 namespace AthleticsSocialWeb.Models
 {
@@ -28,6 +30,8 @@ namespace AthleticsSocialWeb.Models
     public class UserInfoViewModel
     {
         public string UserName { get; set; }
+
+        public bool IsConfirmed { get; set; }
 
         public bool HasRegistered { get; set; }
 

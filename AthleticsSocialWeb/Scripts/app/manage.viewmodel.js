@@ -53,16 +53,16 @@
     });
 
     // Operations
-    self.load = function () { // Load user management data
+    self.load = function() { // Load user management data
         if (!startedLoad) {
             startedLoad = true;
 
             dataModel.getManageInfo(dataModel.returnUrl, true /* generateState */)
-                .done(function (data) {
-                    if (typeof (data.localLoginProvider) !== "undefined" &&
-                        typeof (data.userName) !== "undefined" &&
-                        typeof (data.logins) !== "undefined" &&
-                        typeof (data.externalLoginProviders) !== "undefined") {
+                .done(function(data) {
+                    if (typeof(data.localLoginProvider) !== "undefined" &&
+                        typeof(data.userName) !== "undefined" &&
+                        typeof(data.logins) !== "undefined" &&
+                        typeof(data.externalLoginProviders) !== "undefined") {
                         self.userName(data.userName);
                         self.localLoginProvider(data.localLoginProvider);
 
@@ -79,7 +79,7 @@
                     }
 
                     self.loading(false);
-                }).failJSON(function (data) {
+                }).failJSON(function(data) {
                     var errors;
 
                     self.loading(false);
@@ -92,7 +92,7 @@
                     }
                 });
         }
-    }
+    };
 
     self.home = function () {
         app.navigateToHome();

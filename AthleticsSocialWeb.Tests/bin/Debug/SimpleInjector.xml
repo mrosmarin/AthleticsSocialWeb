@@ -3429,6 +3429,11 @@
         <member name="T:SimpleInjector.Extensions.OpenGenericRegistrationExtensions.UnregisteredOpenGenericResolver">
             <summary>Resolves a given open generic type.</summary>
         </member>
+        <member name="T:SimpleInjector.Extensions.TypeConstraintValidator">
+            <summary>
+            Allows validating an ArgumentMapping.
+            </summary>
+        </member>
         <member name="T:SimpleInjector.Helpers">
             <summary>
             Helper methods for the container.
@@ -3925,6 +3930,18 @@
             (Nothing in VB).</exception>
             <exception cref="T:System.InvalidOperationException">Will be thrown when there is currently no active
             scope for the supplied <paramref name="container"/>.</exception>
+        </member>
+        <member name="M:SimpleInjector.ScopedLifestyle.DisposeInstances(System.Collections.Generic.IList{System.IDisposable})">
+            <summary>
+            Disposes the list of supplied <paramref name="disposables"/>. The list is iterated in reverse 
+            order (the first element in the list will be disposed last) and the method ensures that the
+            Dispose method of each element is called, regardless of any exceptions raised from any previously
+            called Dispose methods. If multiple exceptions are thrown, the last thrown exception will bubble
+            up the call stack.
+            </summary>
+            <param name="disposables">The list of objects to be disposed.</param>
+            <exception cref="T:System.ArgumentNullException">Thrown when the <paramref name="disposables"/> is a null
+            reference.</exception>
         </member>
         <member name="T:SimpleInjector.InstanceProducer">
             <summary>

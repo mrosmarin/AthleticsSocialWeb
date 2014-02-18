@@ -55,11 +55,12 @@
         }).done(function (data) {
             self.loggingIn(false);
 
-            if (data.userName && data.access_token) {
-                app.navigateToLoggedIn(data.userName, data.access_token, self.rememberMe());
-            } else {
+            data.isConfirmed = JSON.parse(data.isConfirmed);
+            if (data.userName && data.access_token)
+                app.navigateToLoggedIn(data, data.access_token, self.rememberMe());
+            else
                 self.errors.push("An unknown error occurred.");
-            }
+
         }).failJSON(function (data) {
             self.loggingIn(false);
 

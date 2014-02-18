@@ -1,9 +1,6 @@
+C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.DAL\bin\Debug\AthleticsSocialWeb.DAL.dll.config
 C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.DAL\bin\Debug\AthleticsSocialWeb.DAL.dll
 C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.DAL\bin\Debug\AthleticsSocialWeb.DAL.pdb
-C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.DAL\obj\Debug\AthleticsSocialWeb.DAL.dll
-C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.DAL\obj\Debug\AthleticsSocialWeb.DAL.pdb
-C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.DAL\obj\Debug\AthleticsSocialWeb.DAL.csprojResolveAssemblyReference.cache
-C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.DAL\bin\Debug\AthleticsSocialWeb.DAL.dll.config
 C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.DAL\bin\Debug\AthleticsSocialWeb.Common.dll
 C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.DAL\bin\Debug\AthleticsSocialWeb.Core.dll
 C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.DAL\bin\Debug\EntityFramework.dll
@@ -26,3 +23,6 @@ C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\Athle
 C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.DAL\bin\Debug\System.Web.WebPages.xml
 C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.DAL\bin\Debug\Microsoft.AspNet.Identity.Core.xml
 C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.DAL\bin\Debug\System.Web.WebPages.Deployment.xml
+C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.DAL\obj\Debug\AthleticsSocialWeb.DAL.csprojResolveAssemblyReference.cache
+C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.DAL\obj\Debug\AthleticsSocialWeb.DAL.dll
+C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.DAL\obj\Debug\AthleticsSocialWeb.DAL.pdb

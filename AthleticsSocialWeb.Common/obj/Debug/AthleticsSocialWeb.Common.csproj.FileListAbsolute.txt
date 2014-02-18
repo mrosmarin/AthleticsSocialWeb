@@ -1,8 +1,5 @@
 C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.Common\bin\Debug\AthleticsSocialWeb.Common.dll
 C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.Common\bin\Debug\AthleticsSocialWeb.Common.pdb
-C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.Common\obj\Debug\AthleticsSocialWeb.Common.dll
-C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.Common\obj\Debug\AthleticsSocialWeb.Common.pdb
-C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.Common\obj\Debug\AthleticsSocialWeb.Common.csprojResolveAssemblyReference.cache
 C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.Common\bin\Debug\Microsoft.Web.Infrastructure.dll
 C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.Common\bin\Debug\System.Web.Helpers.dll
 C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.Common\bin\Debug\System.Web.Mvc.dll
@@ -16,3 +13,5 @@ C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\Athle
 C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.Common\bin\Debug\System.Web.WebPages.xml
 C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.Common\bin\Debug\System.Web.WebPages.Deployment.xml
 C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.Common\bin\Debug\System.Web.WebPages.Razor.xml
+C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.Common\obj\Debug\AthleticsSocialWeb.Common.dll
+C:\Users\Mitchell\Documents\Visual Studio 2013\Projects\AthleticsSocialWeb\AthleticsSocialWeb.Common\obj\Debug\AthleticsSocialWeb.Common.pdb
