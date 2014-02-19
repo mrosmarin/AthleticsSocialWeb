@@ -327,6 +327,29 @@ namespace AthleticsSocialWeb.Controllers
             return await SendEmailConfirmation(userinfo.UserName, userinfo.UserName, userinfo.ConfirmationToken);
         }
 
+
+        //Generate Password Token
+  //      public RNGCryptoServiceProvider()
+   // Member of System.Security.Cryptography.RNGCryptoServiceProvider
+        //private static string GenerateToken()
+        //{
+        //    using (var prng = new RNGCryptoServiceProvider())
+        //    {
+        //        return GenerateToken(prng);
+        //    }
+        //}
+        //
+        //
+        //internal static string GenerateToken(RandomNumberGenerator generator)
+        //{
+        //    byte[] tokenBytes = new byte[TokenSizeInBytes];
+        //    generator.GetBytes(tokenBytes);
+        //    return HttpServerUtility.UrlTokenEncode(tokenBytes);
+        //}
+
+
+
+
         // POST api/Account/VerifyEmail
 
         [OverrideAuthentication]
